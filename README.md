@@ -49,6 +49,7 @@ src/
     CtaSection.vue        Visual-only call to action
     SpecularButton.vue    Vue Bits button used by the CTA
     Aurora.vue            Vue Bits background for the CTA (pauses off-screen)
+    StarBorder.vue        Vue Bits CTA button for touch devices
   composables/useMediaQuery.ts  Switches panel vs. drawer
   composables/useCountUp.ts  Count-up for the estimate shown in the CTA
   lib/tween.ts            Number tween used by the smooth reset and count-up
