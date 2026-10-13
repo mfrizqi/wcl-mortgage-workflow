@@ -65,7 +65,7 @@ In short: document-handling minutes exclude follow-up time, so the two workloads
 
 ## Why these numbers
 
-See [docs/ANSWERS.md](docs/ANSWERS.md) for where each default, range, and limit comes from.
+See [docs/ANSWERS.md](docs/ANSWERS-NEW.md) for where each default, range, and limit comes from.
 
 ## Key decisions
 
@@ -87,8 +87,8 @@ See [docs/ANSWERS.md](docs/ANSWERS.md) for where each default, range, and limit 
 
 - Defaults come from the assessment's table (60 files, 30 min, 1 follow-up, 5 min, $30, 60%), not from the
   sample screenshot on page 7, which uses different numbers.
-- The "responsive right-to-left slider" on page 7 is read as the horizontal range sliders with min / middle
-  / max labels. If a right-to-left (RTL) layout was intended, tell me; it would need `dir="rtl"` support.
+<!-- - The "responsive right-to-left slider" on page 7 is read as the horizontal range sliders with min / middle
+  / max labels. If a right-to-left (RTL) layout was intended, tell me; it would need `dir="rtl"` support. -->
 - Slider ranges follow the screenshot (for example files 10 to 500, cost $15 to $80).
 - Hard maximums are my own sensible limits (for example 100,000 files per month).
 
