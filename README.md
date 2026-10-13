@@ -25,7 +25,7 @@ Fonts are bundled through `@fontsource`, so the app needs no network access afte
 
 ## Stack
 
-Vue 3 (`<script setup>`), TypeScript (strict), Tailwind CSS v4, Pinia, Vite, Vitest.
+Vue 3 (`<script setup>`), TypeScript (strict), Tailwind CSS v4, Pinia, Vite, Vitest. `ogl` powers the CTA button's shine.
 
 ## Project structure
 
@@ -40,11 +40,18 @@ src/
   components/
     SliderField.vue       Number input + range slider + hint + validation, one reusable field
     AssessmentForm.vue    Groups the fields, reset button
-    ResultsPanel.vue      Four primary metrics + workload bar
+    ResultsBody.vue       Four primary metrics + workload bar (shared)
+    ResultsPanel.vue      Desktop results panel
+    ResultsDrawer.vue     Mobile/tablet peek bar + bottom-sheet results
     WorkloadBar.vue       Manual workload vs. potentially recovered share
     MetricCard.vue        One metric
     AssumptionsNotice.vue Assumptions and limitations
     CtaSection.vue        Visual-only call to action
+    SpecularButton.vue    Vue Bits button used by the CTA
+    Aurora.vue            Vue Bits background for the CTA (pauses off-screen)
+  composables/useMediaQuery.ts  Switches panel vs. drawer
+  composables/useCountUp.ts  Count-up for the estimate shown in the CTA
+  lib/tween.ts            Number tween used by the smooth reset and count-up
 ```
 
 Data flow: `SliderField` -> `store.setValue` -> `store.results` (computed) -> `ResultsPanel`.
@@ -54,6 +61,10 @@ Nothing is copied between components, so results can never go out of sync with i
 
 See [docs/CALCULATIONS.md](docs/CALCULATIONS.md) for the formulas, a worked example, and edge-case rules.
 In short: document-handling minutes exclude follow-up time, so the two workloads are added with no overlap.
+
+## Why these numbers
+
+See [docs/ANSWERS.md](docs/ANSWERS.md) for where each default, range, and limit comes from.
 
 ## Key decisions
 
@@ -65,8 +76,9 @@ In short: document-handling minutes exclude follow-up time, so the two workloads
   type exact values, including ones beyond the slider range (up to a per-field hard maximum).
 - **Draft text in the input.** Users can clear a field or type `2.` without the value snapping back.
   On blur the box shows the value actually used.
-- **Single orchestrated motion.** The only animation is the workload bar, which uses `transform: scaleX`
-  and is disabled under `prefers-reduced-motion`.
+- **Restrained motion.** The workload bar (`transform: scaleX`), the smooth reset, and the drawer slide-up.
+  All are disabled under `prefers-reduced-motion`.
+- **Mobile drawer.** Below 1024px results open from a sticky bottom bar, so users do not scroll between inputs and results.
 - **Accessibility.** Visible labels linked to inputs, hints via `aria-describedby`, `role="alert"` errors,
   44px slider hit area, visible focus rings, a polite screen-reader summary of results.
 

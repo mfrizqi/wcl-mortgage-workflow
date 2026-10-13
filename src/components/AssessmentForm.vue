@@ -15,7 +15,7 @@ const store = useAssessmentStore()
       </div>
       <button
         type="button"
-        :disabled="store.isDefault"
+        :disabled="store.isDefault || store.isResetting"
         class="shrink-0 rounded-lg border border-line px-3 py-2 text-sm font-medium text-brand transition-colors hover:bg-paper disabled:cursor-not-allowed disabled:text-muted disabled:opacity-60 disabled:hover:bg-transparent"
         @click="store.reset"
       >
