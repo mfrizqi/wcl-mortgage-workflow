@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #13233a;
+  --color-paper: #f3f6f9;
+  --color-surface: #ffffff;
+  --color-line: #d5dee7;
+  --color-track: #dde5ec;
+  --color-muted: #4a5a6e;
+  --color-brand: #1f4e8c;
+  --color-manual: #64748b;
+  --color-manual-soft: #e7ecf1;
+  --color-recover: #14735a;
+  --color-recover-soft: #e0f2ea;
+  --color-danger: #b42318;
+  --color-bar-recover: #22c55e;
+  --color-bar-manual: #475569;
+}
+
+@layer base {
+  html { background: var(--color-paper); color: var(--color-ink); }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; }
+}
+
+/* Range slider: 44px hit area, 8px track, fill driven by the --fill custom property. */
+@layer components {
+  .range {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    --fill: 0%;
+  }
+  .range:focus-visible { outline: none; }
+  .range::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--color-brand) var(--fill), var(--color-track) var(--fill));
+  }
+  .range::-moz-range-track {
+    height: 8px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--color-brand) var(--fill), var(--color-track) var(--fill));
+  }
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    margin-top: -8px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid var(--color-brand);
+    box-shadow: 0 1px 3px rgb(19 35 58 / 0.25);
+  }
+  .range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid var(--color-brand);
+    box-shadow: 0 1px 3px rgb(19 35 58 / 0.25);
+  }
+  .range:focus-visible::-webkit-slider-thumb { outline: 3px solid var(--color-brand); outline-offset: 2px; }
+  .range:focus-visible::-moz-range-thumb { outline: 3px solid var(--color-brand); outline-offset: 2px; }
+}
