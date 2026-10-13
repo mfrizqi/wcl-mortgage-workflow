@@ -23,7 +23,7 @@
 
     <!-- Inner surface adapted to the CTA palette (was #0b0b0b / #333, px-64 py-24). -->
     <div
-      class="z-10 relative bg-[#16253d] border border-white/15 rounded-[20px] font-display text-[1.05rem] font-semibold text-white text-center"
+      class="z-10 relative bg-[#16253d] border border-white/15 rounded-[20px] font-display text-[1.05rem] font-semibold text-white text-center transition-transform duration-150 active:scale-[0.97]"
     >
     <div class="w-full h-full rounded-[20px] bg-[#ffffff]/20 px-8 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_8px_24px_rgba(0,0,0,0.1)]">
       <slot />
